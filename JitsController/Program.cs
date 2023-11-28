@@ -1,4 +1,8 @@
+using Entity.Repository;
+using Interface.Service;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,10 @@ var logger = new LoggerConfiguration()
   .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+builder.Services.AddScoped<ICacheServices, CacheService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddDbContext<JitsStoreContext>(option => option.UseSqlServer("Server=.;Database=JITS_STORE;Trusted_Connection=True;TrustServerCertificate=True;User ID=sa;Password=12345;"));
+Injection.Inject(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
