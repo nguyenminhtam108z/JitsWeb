@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Interface.Repository\Interface.Repository.csproj" />
     <ProjectReference Include="..\Interface.Service\Interface.Service.csproj" />
   </ItemGroup>
 
