@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entity.Repository.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Entity.Repository.Models;
+namespace Entity.Repository;
 
 public partial class JitsStoreContext : DbContext
 {
