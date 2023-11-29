@@ -11,12 +11,10 @@ namespace JitsController.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly ILogger<EmployeesController> _logger;
-        private readonly ICacheServices _cacheServices;
         private readonly IEmployeeService _employeeService;
-        public EmployeesController(ILogger<EmployeesController> logger , ICacheServices cacheServices , IEmployeeService employeeService)
+        public EmployeesController(ILogger<EmployeesController> logger , IEmployeeService employeeService)
         {
             _logger = logger;
-            _cacheServices = cacheServices;
             _employeeService = employeeService;
         }
 
@@ -24,12 +22,7 @@ namespace JitsController.Controllers
         public IEnumerable<EmployeeOutputDto> GetAllEmployees()
         {
 			_logger.LogInformation("Get All Supplier...");
-            var cacheData = _cacheServices.GetData<IEnumerable<EmployeeOutputDto>>("employee");
             var list = new List<EmployeeOutputDto>();
-			if (cacheData != null && cacheData.Any())
-			{
-                return cacheData;
-			}
             var listEmployee = _employeeService.GetAllEmployee();
             if(listEmployee.Any())
             {
@@ -52,11 +45,7 @@ namespace JitsController.Controllers
 				}
 			}
 
-            cacheData = list;
-			// set Expiry Time
-			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
-			_cacheServices.SetData<IEnumerable<EmployeeOutputDto>>("customer", cacheData, expiryTime);
-			return cacheData;
+            return list;
         }
     }
 }

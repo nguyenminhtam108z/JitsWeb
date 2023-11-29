@@ -1,7 +1,7 @@
-﻿namespace Interface.Service
+﻿namespace Interface.RedisCache
 {
-    public interface ICacheServices
-    {
+	public interface ICacheService
+	{
 		T GetData<T>(string key);
 		bool SetData<T>(string key, T value, DateTimeOffset expirationTime);
 

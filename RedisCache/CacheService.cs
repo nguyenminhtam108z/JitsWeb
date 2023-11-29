@@ -1,10 +1,10 @@
-﻿using Interface.Service;
+﻿using Interface.RedisCache;
 using StackExchange.Redis;
 using System.Text.Json;
 
-namespace Service
+namespace RedisCache
 {
-	public class CacheService : ICacheServices
+	public class CacheService : ICacheService
 	{
 		IDatabase _cacheDB;
 

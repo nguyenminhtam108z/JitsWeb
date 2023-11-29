@@ -3,23 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JitsController", "JitsController\JitsController.csproj", "{0E82B951-79BC-43AA-B57D-FDB20B3F191B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JitsController", "JitsController\JitsController.csproj", "{0E82B951-79BC-43AA-B57D-FDB20B3F191B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositoty", "Repositoty", "{077CE963-24F2-45CF-ACC8-21C4130961BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Repository", "Entity.Repository\Entity.Repository.csproj", "{347D090C-9FC4-42A3-BE83-0C03E4AAE394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity.Repository", "Entity.Repository\Entity.Repository.csproj", "{347D090C-9FC4-42A3-BE83-0C03E4AAE394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface.Repository", "Interface.Repository\Interface.Repository.csproj", "{B110B88A-7DCD-4442-B333-5081FCE2F32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface.Repository", "Interface.Repository\Interface.Repository.csproj", "{B110B88A-7DCD-4442-B333-5081FCE2F32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{18B45162-3893-4A7C-92F0-A6F672A1A9A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{18B45162-3893-4A7C-92F0-A6F672A1A9A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{923A852F-2F2A-448A-A323-D5005B321116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto.Service", "Dto.Service\Dto.Service.csproj", "{79FD8D29-7E41-467C-9852-82E01417514C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dto.Service", "Dto.Service\Dto.Service.csproj", "{79FD8D29-7E41-467C-9852-82E01417514C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface.Service", "Interface.Service\Interface.Service.csproj", "{C619EDF0-41DA-4EDD-9E3D-C7DE7B29A38F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface.Service", "Interface.Service\Interface.Service.csproj", "{C619EDF0-41DA-4EDD-9E3D-C7DE7B29A38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{72391D69-08AA-4482-B326-E9E9D9A83B30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{72391D69-08AA-4482-B326-E9E9D9A83B30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Injection", "Injection", "{25424898-3233-4EC3-8E7A-65D505C4CBD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Injection", "Injection\Injection.csproj", "{9DCB3518-892A-4B0E-818F-9374301AA526}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{B03A6478-32D8-4C5C-9E5D-BADDEA174BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisCache", "RedisCache\RedisCache.csproj", "{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface.RedisCache", "Interface.RedisCache\Interface.RedisCache.csproj", "{EB5497F1-6986-4868-85FB-772D366079B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +65,18 @@ Global
 		{72391D69-08AA-4482-B326-E9E9D9A83B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72391D69-08AA-4482-B326-E9E9D9A83B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72391D69-08AA-4482-B326-E9E9D9A83B30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DCB3518-892A-4B0E-818F-9374301AA526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DCB3518-892A-4B0E-818F-9374301AA526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DCB3518-892A-4B0E-818F-9374301AA526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DCB3518-892A-4B0E-818F-9374301AA526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB5497F1-6986-4868-85FB-772D366079B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5497F1-6986-4868-85FB-772D366079B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5497F1-6986-4868-85FB-772D366079B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5497F1-6986-4868-85FB-772D366079B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +88,9 @@ Global
 		{79FD8D29-7E41-467C-9852-82E01417514C} = {923A852F-2F2A-448A-A323-D5005B321116}
 		{C619EDF0-41DA-4EDD-9E3D-C7DE7B29A38F} = {923A852F-2F2A-448A-A323-D5005B321116}
 		{72391D69-08AA-4482-B326-E9E9D9A83B30} = {923A852F-2F2A-448A-A323-D5005B321116}
+		{9DCB3518-892A-4B0E-818F-9374301AA526} = {25424898-3233-4EC3-8E7A-65D505C4CBD4}
+		{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD} = {B03A6478-32D8-4C5C-9E5D-BADDEA174BFC}
+		{EB5497F1-6986-4868-85FB-772D366079B3} = {B03A6478-32D8-4C5C-9E5D-BADDEA174BFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3BC5B58-B94C-4B6E-BAD1-136B2BB17618}

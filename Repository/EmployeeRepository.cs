@@ -1,20 +1,34 @@
 ﻿using Entity.Repository;
 using Entity.Repository.Models;
+using Interface.RedisCache;
 using Interface.Repository;
+using RedisCache;
+using System.Collections.Generic;
 
 namespace Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly JitsStoreContext _context;
-
-        public EmployeeRepository(JitsStoreContext context)
+        private readonly ICacheService _cacheServices;
+        public EmployeeRepository(JitsStoreContext context, ICacheService cacheService) 
         {
             _context = context;
+            _cacheServices = cacheService;
         }
         public IEnumerable<Employee> GetAll()
         {
-            return _context.Employees.ToList();
+			var cacheData = _cacheServices.GetData<IEnumerable<Employee>>("employee");
+			if (cacheData != null && cacheData.Any())
+			{
+				return cacheData;
+			}
+
+			cacheData = _context.Employees.ToList();
+			// set Expiry Time
+			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData, expiryTime);
+			return cacheData;
         }
     }
 }

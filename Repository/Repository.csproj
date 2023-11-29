@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Entity.Repository\Entity.Repository.csproj" />
     <ProjectReference Include="..\Interface.Repository\Interface.Repository.csproj" />
+    <ProjectReference Include="..\RedisCache\RedisCache.csproj" />
   </ItemGroup>
 
 </Project>
