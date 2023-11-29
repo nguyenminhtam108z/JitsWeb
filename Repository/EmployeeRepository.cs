@@ -25,7 +25,14 @@ namespace Repository
 			return _context.SaveChanges();
 		}
 
-		public IEnumerable<Employee> GetAll()
+        public int Delete(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+
+            return _context.SaveChanges();
+        }
+
+        public IEnumerable<Employee> GetAll()
         {
 			var cacheData = _cacheServices.GetData<IEnumerable<Employee>>("employee");
 			if (cacheData != null && cacheData.Any())
@@ -38,6 +45,13 @@ namespace Repository
 			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
 			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData, expiryTime);
 			return cacheData;
+        }
+
+        public int Update(Employee employee)
+        {
+            _context.Update(employee);
+
+            return _context.SaveChanges();
         }
     }
 }

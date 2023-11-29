@@ -12,5 +12,9 @@ namespace Interface.Repository
     {
         IEnumerable<Employee> GetAll();
         int Add(Employee employee);
+
+        int Delete(Employee employee);
+
+        int Update(Employee employee);
     }
 }
