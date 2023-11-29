@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class EmployeeRepository : IEmployeeRepository
+	public class EmployeeRepository : IEmployeeRepository
     {
         private readonly JitsStoreContext _context;
         private readonly ICacheService _cacheServices;
@@ -16,7 +16,16 @@ namespace Repository
             _context = context;
             _cacheServices = cacheService;
         }
-        public IEnumerable<Employee> GetAll()
+
+		public int Add(Employee employee)
+		{
+			var addObject = _context.Add(employee);
+			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+			_cacheServices.SetData<Employee>($"employee{employee.EmployeeId}", addObject.Entity, expiryTime);
+			return _context.SaveChanges();
+		}
+
+		public IEnumerable<Employee> GetAll()
         {
 			var cacheData = _cacheServices.GetData<IEnumerable<Employee>>("employee");
 			if (cacheData != null && cacheData.Any())
