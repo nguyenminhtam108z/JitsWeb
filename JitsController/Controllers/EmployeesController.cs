@@ -71,5 +71,53 @@ namespace JitsController.Controllers
 			}
 			return true;
 		}
+
+		[HttpPost("api/UpdateEmployee")]
+		public bool UpdateEmployee(EmployeeInputDto input)
+		{
+			_logger.LogInformation("Delete Employee..");
+			var employeeServiceDto = new EmployeeServiceDto()
+			{
+				EmployeeId = input.EmployeeId,
+				Address = input.Address,
+				BirthDate = input.BirthDate,
+				ContactType = input.ContactType,
+				Email = input.Email,
+				Name = input.Name,
+				Phone = input.Phone,
+				Salary = input.Salary,
+				Status = input.Status,
+			};
+			var employeeAdd = _employeeService.UpdateEmployee(employeeServiceDto);
+			if (employeeAdd != true)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		[HttpPost("api/DeleteEmployee")]
+		public bool DeleteEmployee(EmployeeInputDto input)
+		{
+			_logger.LogInformation("Update Employee..");
+			var employeeServiceDto = new EmployeeServiceDto()
+			{
+				EmployeeId = input.EmployeeId,
+				Address = input.Address,
+				BirthDate = input.BirthDate,
+				ContactType = input.ContactType,
+				Email = input.Email,
+				Name = input.Name,
+				Phone = input.Phone,
+				Salary = input.Salary,
+				Status = input.Status,
+			};
+			var employeeAdd = _employeeService.DeleteEmployee(employeeServiceDto);
+			if (employeeAdd != true)
+			{
+				return false;
+			}
+			return true;
+		}
 	}
 }

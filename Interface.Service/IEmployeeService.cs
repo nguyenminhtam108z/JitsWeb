@@ -11,5 +11,9 @@ namespace Interface.Service
 	{
 		IEnumerable<EmployeeServiceDto> GetAllEmployee();
 		bool AddEmployee(EmployeeServiceDto employee);
+
+		bool DeleteEmployee(EmployeeServiceDto employee);
+
+		bool UpdateEmployee(EmployeeServiceDto employee);
 	}
 }

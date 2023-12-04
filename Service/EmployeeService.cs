@@ -40,6 +40,20 @@ namespace Service
 			return true;
 		}
 
+		public bool DeleteEmployee(EmployeeServiceDto employee)
+		{
+			Employee employeeDelete = new Employee()
+			{
+				EmployeeId = employee.EmployeeId,
+			};
+			var check = _employeeRepository.Delete(employeeDelete);
+			if(check != 1)
+			{
+				return false;
+			}
+			return true;
+		}
+
 		public IEnumerable<EmployeeServiceDto> GetAllEmployee()
 		{
 			var result = new List<EmployeeServiceDto>();
@@ -64,6 +78,28 @@ namespace Service
 				} 
 			}
 			return result;
+		}
+
+		public bool UpdateEmployee(EmployeeServiceDto employee)
+		{
+			Employee employeeUpdate = new Employee()
+			{
+				EmployeeId = employee.EmployeeId,
+				Address = employee.Address,
+				BirthDate = employee.BirthDate,
+				ContactType = employee.ContactType,
+				Email = employee.Email,
+				Name = employee.Name,
+				Phone = employee.Phone,
+				Salary = employee.Salary,
+				Status = employee.Status,
+			};
+			var check = _employeeRepository.Update(employeeUpdate);
+			if(check != 1)
+			{
+				return false;
+			}
+			return true;
 		}
 	}
 }

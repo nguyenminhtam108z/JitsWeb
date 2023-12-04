@@ -20,14 +20,19 @@ namespace Repository
 		public int Add(Employee employee)
 		{
 			var addObject = _context.Add(employee);
-			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+			var expiryTime = DateTimeOffset.Now.AddDays(2);
 			_cacheServices.SetData<Employee>($"employee{employee.EmployeeId}", addObject.Entity, expiryTime);
 			return _context.SaveChanges();
 		}
 
         public int Delete(Employee employee)
         {
-            _context.Employees.Remove(employee);
+			var exist = _context.Employees.FirstOrDefault(item => item.EmployeeId.Equals(employee.EmployeeId));
+			if (exist != null)
+			{
+				_cacheServices.RemoveData($"employee{employee.EmployeeId}");
+				_context.Employees.Remove(exist);
+			}
 
             return _context.SaveChanges();
         }
@@ -42,16 +47,22 @@ namespace Repository
 
 			cacheData = _context.Employees.ToList();
 			// set Expiry Time
-			var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+			var expiryTime = DateTimeOffset.Now.AddDays(2);
 			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData, expiryTime);
 			return cacheData;
         }
 
         public int Update(Employee employee)
         {
-            _context.Update(employee);
-
-            return _context.SaveChanges();
+            var exist = _context.Employees.FirstOrDefault(item => item.EmployeeId.Equals(employee.EmployeeId));
+            if(exist != null)
+            {
+                _cacheServices.RemoveData($"employee{employee.EmployeeId}");
+			}
+            var updateObject = _context.Update(employee);
+			var expiryTime = DateTimeOffset.Now.AddDays(2);
+			_cacheServices.SetData<Employee>($"employee{employee.EmployeeId}", updateObject.Entity, expiryTime);
+			return _context.SaveChanges();
         }
     }
 }
