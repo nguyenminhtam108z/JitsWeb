@@ -10,8 +10,16 @@ namespace RedisCache
 
 		public CacheService()
 		{
-			var redis = ConnectionMultiplexer.Connect("localhost:6379");
+			// Gán chuỗi redis
+			var options = ConfigurationOptions.Parse("localhost:6379");
+			options.AllowAdmin = true;
+			var redis = ConnectionMultiplexer.Connect(options);
+			// tạo DB redis
 			_cacheDB = redis.GetDatabase();
+			//Loại bỏ tất cả cache đã xóa
+			var endPoint = redis.GetEndPoints();
+			var server = redis.GetServer(endPoint[0]);
+			server.FlushAllDatabases();
 		}
 
 		public T GetData<T>(string key)
@@ -31,7 +39,7 @@ namespace RedisCache
 			{
 				return _cacheDB.KeyDelete(key);
 			}
-
+			
 			return false;
 		}
 

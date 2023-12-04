@@ -58,11 +58,13 @@ namespace Repository
             if(exist != null)
             {
                 _cacheServices.RemoveData($"employee{employee.EmployeeId}");
+				_context.Employees.Remove(exist);
+				var updateObject = _context.Add(employee);
+				var expiryTime = DateTimeOffset.Now.AddDays(2);
+				_cacheServices.SetData<Employee>($"employee{employee.EmployeeId}", updateObject.Entity, expiryTime);
 			}
-            var updateObject = _context.Update(employee);
-			var expiryTime = DateTimeOffset.Now.AddDays(2);
-			_cacheServices.SetData<Employee>($"employee{employee.EmployeeId}", updateObject.Entity, expiryTime);
 			return _context.SaveChanges();
-        }
-    }
+
+		}
+	}
 }
