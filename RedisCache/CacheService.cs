@@ -17,9 +17,9 @@ namespace RedisCache
 			// tạo DB redis
 			_cacheDB = redis.GetDatabase();
 			//Loại bỏ tất cả cache đã xóa
-			var endPoint = redis.GetEndPoints();
-			var server = redis.GetServer(endPoint[0]);
-			server.FlushAllDatabases();
+			//var endPoint = redis.GetEndPoints();
+			//var server = redis.GetServer(endPoint[0]);
+			//server.FlushAllDatabases();
 		}
 
 		public T GetData<T>(string key)
@@ -30,6 +30,15 @@ namespace RedisCache
 				return JsonSerializer.Deserialize<T>(value);
 			}
 			return default;
+		}
+
+		public List<string> GetKeys()
+		{
+			var redis = ConnectionMultiplexer.Connect("localhost:6379");
+			var key = redis.GetServer("localhost", 6379).Keys();
+			List<string> result = new List<string>();
+			result.AddRange(key.Select(key => (string)key).ToList());
+			return result;
 		}
 
 		public object RemoveData(string key)

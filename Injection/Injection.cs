@@ -19,6 +19,7 @@ namespace Injection
 			service.AddTransient<IEmployeeRepository, EmployeeRepository>();
 			service.AddTransient<IEmployeeService, EmployeeService>();
 			service.AddTransient<ICacheService, CacheService>();
+			service.AddTransient<ICacheRepository, CacheRepository>();
 		}
 	}
 }
