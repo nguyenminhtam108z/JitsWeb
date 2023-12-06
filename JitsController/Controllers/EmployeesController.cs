@@ -8,7 +8,7 @@ using Service;
 namespace JitsController.Controllers
 {
 	[ApiController]
-	[Route("[Controller]")]
+	[Route("api/[controller]/[action]")]
 	public class EmployeesController : ControllerBase
 	{
 		private readonly ILogger<EmployeesController> _logger;
@@ -19,8 +19,8 @@ namespace JitsController.Controllers
 			_employeeService = employeeService;
 		}
 
-		[HttpGet("api/getall")]
-		public IEnumerable<EmployeeOutputDto> GetAllEmployees()
+		[HttpGet]
+		public IEnumerable<EmployeeOutputDto> Get()
 		{
 			_logger.LogInformation("Get All Supplier...");
 			var list = new List<EmployeeOutputDto>();
@@ -48,7 +48,7 @@ namespace JitsController.Controllers
 			return list;
 		}
 
-		[HttpPost("api/AddEmployee")]
+		[HttpPost]
 		public bool AddEmployee(EmployeeInputDto input)
 		{
 			_logger.LogInformation("Add Employee..");
