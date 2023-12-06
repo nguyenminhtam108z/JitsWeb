@@ -1,6 +1,6 @@
 ﻿using Interface.RedisCache;
+using Newtonsoft.Json;
 using StackExchange.Redis;
-using System.Text.Json;
 
 namespace RedisCache
 {
@@ -14,12 +14,12 @@ namespace RedisCache
 			var options = ConfigurationOptions.Parse("localhost:6379");
 			options.AllowAdmin = true;
 			var redis = ConnectionMultiplexer.Connect(options);
+			//var redis = ConnectionMultiplexer.Connect("localhost:6379");
 			// tạo DB redis
 			_cacheDB = redis.GetDatabase();
-			//Loại bỏ tất cả cache đã xóa
-			//var endPoint = redis.GetEndPoints();
-			//var server = redis.GetServer(endPoint[0]);
-			//server.FlushAllDatabases();
+			var endPoint = redis.GetEndPoints();
+			var server = redis.GetServer(endPoint[0]);
+			server.FlushAllDatabases();
 		}
 
 		public T GetData<T>(string key)
@@ -27,7 +27,11 @@ namespace RedisCache
 			var value = _cacheDB.StringGet(key);
 			if (!string.IsNullOrEmpty(value))
 			{
-				return JsonSerializer.Deserialize<T>(value);
+				return JsonConvert.DeserializeObject<T>(value , new JsonSerializerSettings()
+				{
+					PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+					StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
+				});
 			}
 			return default;
 		}
@@ -54,8 +58,13 @@ namespace RedisCache
 
 		public bool SetData<T>(string key, T value, DateTimeOffset expirationTime)
 		{
+			var json = JsonConvert.SerializeObject(value , new JsonSerializerSettings()
+			{
+				PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
+			});
 			var expireTime = expirationTime.DateTime.Subtract(DateTime.Now);
-			return _cacheDB.StringSet(key, JsonSerializer.Serialize<T>(value), expireTime);
+			return _cacheDB.StringSet(key, json, expireTime);
 		}
 	}
 }

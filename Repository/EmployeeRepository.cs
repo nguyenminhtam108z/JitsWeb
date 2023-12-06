@@ -48,7 +48,7 @@ namespace Repository
 			cacheData = _context.Employees.ToList();
 			// set Expiry Time
 			var expiryTime = DateTimeOffset.Now.AddDays(2);
-			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData.ToList(), expiryTime);
+			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData, expiryTime);
 			return cacheData;
         }
 
