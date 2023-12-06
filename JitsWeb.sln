@@ -23,13 +23,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Injection", "Injection", "{25424898-3233-4EC3-8E7A-65D505C4CBD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Injection", "Injection\Injection.csproj", "{9DCB3518-892A-4B0E-818F-9374301AA526}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Injection", "Injection\Injection.csproj", "{9DCB3518-892A-4B0E-818F-9374301AA526}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{B03A6478-32D8-4C5C-9E5D-BADDEA174BFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisCache", "RedisCache\RedisCache.csproj", "{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisCache", "RedisCache\RedisCache.csproj", "{34CBCAB3-4454-4F2D-B6B5-9C61699A12DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface.RedisCache", "Interface.RedisCache\Interface.RedisCache.csproj", "{EB5497F1-6986-4868-85FB-772D366079B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface.RedisCache", "Interface.RedisCache\Interface.RedisCache.csproj", "{EB5497F1-6986-4868-85FB-772D366079B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JitsWebAPI", "JitsWebAPI\JitsWebAPI.csproj", "{3BE5A4BD-AF29-478F-A367-420C0315704E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{EB5497F1-6986-4868-85FB-772D366079B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB5497F1-6986-4868-85FB-772D366079B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB5497F1-6986-4868-85FB-772D366079B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE5A4BD-AF29-478F-A367-420C0315704E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE5A4BD-AF29-478F-A367-420C0315704E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE5A4BD-AF29-478F-A367-420C0315704E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE5A4BD-AF29-478F-A367-420C0315704E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

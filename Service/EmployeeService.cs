@@ -32,11 +32,18 @@ namespace Service
 				Salary = employee.Salary,
 				Status = employee.Status,
 			};
-			var check = _employeeRepository.Add(employeeAdd);
-			if(check != 1)
+			try
+			{
+				var check = _employeeRepository.Add(employeeAdd);
+			}
+			catch (Exception ex)
 			{
 				return false;
 			}
+			//if(check != 1)
+			//{
+			//	return false;
+			//}
 			return true;
 		}
 
