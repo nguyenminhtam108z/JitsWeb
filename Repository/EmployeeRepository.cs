@@ -25,12 +25,12 @@ namespace Repository
             return _context.SaveChanges();
 		}
 
-        public int Delete(Employee employee)
+        public int Delete(Guid EmployeeId)
         {
-			var exist = _context.Employees.FirstOrDefault(item => item.EmployeeId.Equals(employee.EmployeeId));
+			var exist = _context.Employees.FirstOrDefault(item => item.EmployeeId.Equals(EmployeeId));
 			if (exist != null)
 			{
-				_cacheServices.RemoveData($"employee{employee.EmployeeId}");
+				_cacheServices.RemoveData($"employee{EmployeeId}");
 				_context.Employees.Remove(exist);
 			}
 
@@ -50,6 +50,17 @@ namespace Repository
 			var expiryTime = DateTimeOffset.Now.AddDays(2);
 			_cacheServices.SetData<IEnumerable<Employee>>("employee", cacheData, expiryTime);
 			return cacheData;
+        }
+
+		public Employee Get (Guid EmployeeId)
+		{
+            var exist = _context.Employees.FirstOrDefault(item => item.EmployeeId.Equals(EmployeeId));
+            if (exist != null)
+            {
+                return exist;
+            }
+
+            return new Employee();
         }
 
         public int Update(Employee employee)

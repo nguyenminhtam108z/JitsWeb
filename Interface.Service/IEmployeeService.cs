@@ -10,9 +10,12 @@ namespace Interface.Service
 	public interface IEmployeeService
 	{
 		IEnumerable<EmployeeServiceDto> GetAllEmployee();
-		bool AddEmployee(EmployeeServiceDto employee);
 
-		bool DeleteEmployee(EmployeeServiceDto employee);
+		EmployeeServiceDto GetEmployee(Guid EmployeeId);
+
+        bool AddEmployee(EmployeeServiceDto employee);
+
+		bool DeleteEmployee(Guid EmployeeId);
 
 		bool UpdateEmployee(EmployeeServiceDto employee);
 	}
