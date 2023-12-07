@@ -17,7 +17,9 @@ namespace Injection
 			service.AddDbContext<JitsStoreContext>(options =>
 		options.UseSqlServer(connectionString));
 			service.AddTransient<IEmployeeRepository, EmployeeRepository>();
+			service.AddTransient<ICustomerRepository, CustomerRepository>();
 			service.AddTransient<IEmployeeService, EmployeeService>();
+			service.AddTransient<ICustomerService, CustomerService>();
 			service.AddTransient<ICacheService, CacheService>();
 			service.AddTransient<ICacheRepository, CacheRepository>();
 		}
