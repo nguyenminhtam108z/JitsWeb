@@ -99,7 +99,7 @@ namespace JitsController.Controllers
         [HttpPut]
         public bool UpdateEmployee(EmployeeInputDto input)
         {
-            _logger.LogInformation("Delete Employee..");
+            _logger.LogInformation("Update Employee..");
             var employeeServiceDto = new EmployeeServiceDto()
             {
                 EmployeeId = input.EmployeeId,
@@ -123,11 +123,7 @@ namespace JitsController.Controllers
         [HttpDelete("{EmployeeId}")]
         public bool DeleteEmployee(Guid EmployeeId)
         {
-            _logger.LogInformation("Update Employee..");
-            //var employeeServiceDto = new EmployeeServiceDto()
-            //{
-            //    EmployeeId = EmployeeId,
-            //};
+            _logger.LogInformation("Delete Employee..");
             var employeeAdd = _employeeService.DeleteEmployee(EmployeeId);
             if (employeeAdd != true)
             {
