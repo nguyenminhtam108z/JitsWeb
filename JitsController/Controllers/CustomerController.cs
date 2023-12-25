@@ -33,6 +33,7 @@ namespace JitsController.Controllers
                 {
                     CustomerOutputDto employeeOutput = new CustomerOutputDto()
                     {
+                        CustomerId = employee.CustomerId,
                         Address = employee.Address,
                         Email = employee.Email,
                         Sex = employee.Sex,
@@ -50,11 +51,12 @@ namespace JitsController.Controllers
         [HttpGet("{CustomerId}")]
         public CustomerOutputDto GetCustomer(Guid CustomerId)
         {
-            _logger.LogInformation("Find Employee..");
+            _logger.LogInformation("Find Customer..");
             var employee = new CustomerOutputDto();
             var employees = _customerService.GetCustomer(CustomerId);
             if (employees != null)
             {
+                employee.CustomerId = employees.CustomerId;
                 employee.Address = employees.Address;
                 employee.Email = employees.Email;
                 employee.Phone = employees.Phone;
@@ -69,16 +71,16 @@ namespace JitsController.Controllers
         [HttpPost]
         public bool AddCustomer(CustomerInputDto input)
         {
-            _logger.LogInformation("Add Employee..");
+            _logger.LogInformation("Add Customer..");
             var employeeServiceDto = new CustomerServiceDto()
             {
                 CustomerId = Guid.NewGuid(),
-                Sex = input.Sex,    
+                Sex = input.Sex,
                 Age = input.Age,
-                 CustomerName = input.CustomerName,
-                 Address = input.Address,
-                 Email = input.Email,
-                 Phone = input.Phone,   
+                CustomerName = input.CustomerName,
+                Address = input.Address,
+                Email = input.Email,
+                Phone = input.Phone,
             };
             var employeeAdd = _customerService.AddCustomer(employeeServiceDto);
             if (employeeAdd != true)
@@ -88,44 +90,38 @@ namespace JitsController.Controllers
             return true;
         }
 
-        //[HttpPut]
-        //public bool UpdateEmployee(EmployeeInputDto input)
-        //{
-        //    _logger.LogInformation("Delete Employee..");
-        //    var employeeServiceDto = new EmployeeServiceDto()
-        //    {
-        //        EmployeeId = input.EmployeeId,
-        //        Address = input.Address,
-        //        BirthDate = input.BirthDate,
-        //        ContactType = input.ContactType,
-        //        Email = input.Email,
-        //        Name = input.Name,
-        //        Phone = input.Phone,
-        //        Salary = input.Salary,
-        //        Status = input.Status,
-        //    };
-        //    var employeeAdd = _employeeService.UpdateEmployee(employeeServiceDto);
-        //    if (employeeAdd != true)
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
+        [HttpPut]
+        public bool UpdateCustomer(CustomerInputDto input)
+        {
+            _logger.LogInformation("Update Employee..");
+            var customerServiceDto = new CustomerServiceDto()
+            {
+                CustomerId = input.CustomerId,
+                CustomerName = input.CustomerName,
+                Sex = input.Sex,
+                Age = input.Age,
+                Address = input.Address,
+                Email = input.Email,
+                Phone = input.Phone,
+            };
+            var customerAdd = _customerService.UpdateCustomer(customerServiceDto);
+            if (customerAdd != true)
+            {
+                return false;
+            }
+            return true;
+        }
 
-        //[HttpDelete("{EmployeeId}")]
-        //public bool DeleteEmployee(Guid EmployeeId)
-        //{
-        //    _logger.LogInformation("Update Employee..");
-        //    //var employeeServiceDto = new EmployeeServiceDto()
-        //    //{
-        //    //    EmployeeId = EmployeeId,
-        //    //};
-        //    var employeeAdd = _employeeService.DeleteEmployee(EmployeeId);
-        //    if (employeeAdd != true)
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
+        [HttpDelete("{CustomerId}")]
+        public bool DeleteCustomer(Guid CustomerId)
+        {
+            _logger.LogInformation("Delete Customer..");
+            var employeeAdd = _customerService.DeleteCustomer(CustomerId);
+            if (employeeAdd != true)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Models\EmployeeViewModel.cs~RF1ab65027.TMP" />
+    <None Remove="Models\h5etqp33.tkl~" />
   </ItemGroup>
 
   <ItemGroup>

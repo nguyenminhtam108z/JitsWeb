@@ -44,10 +44,6 @@ namespace Service
 
 		public bool DeleteCustomer(Guid CustomerId)
 		{
-			//Employee employeeDelete = new Employee()
-			//{
-			//    EmployeeId = employee.EmployeeId,
-			//};
 			var check = _customerRepository.Delete(CustomerId);
 			if (check != 1)
 			{
@@ -66,6 +62,7 @@ namespace Service
 				{
 					CustomerServiceDto employeeServiceDto = new CustomerServiceDto()
 					{
+						CustomerId = employee.CustomerId,
 						Email = employee.Email,
 						Address = employee.Address,
 						CustomerName = employee.CustomerName,
@@ -79,15 +76,16 @@ namespace Service
 			return result;
 		}
 
-		public CustomerServiceDto GetCustomer(Guid customerId)
+		public CustomerServiceDto GetCustomer(Guid CustomerId)
 		{
 			var result = new CustomerServiceDto();
-			var listEmployee = _customerRepository.Get(customerId);
+			var listEmployee = _customerRepository.Get(CustomerId);
 			if (listEmployee != null)
 			{
 				CustomerServiceDto employeeServiceDto = new CustomerServiceDto()
 				{
-					Email = listEmployee.Email,
+                    CustomerId = listEmployee.CustomerId,
+                    Email = listEmployee.Email,
 					Address = listEmployee.Address,
 					Sex = listEmployee.Sex,
 					Phone = listEmployee.Phone,
